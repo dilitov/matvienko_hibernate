@@ -1,11 +1,14 @@
 package com.dmdev.converter;
 
 import com.dmdev.entity.Birthday;
-import jakarta.persistence.AttributeConverter;
 
-import java.util.Date;
+
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
+import java.sql.Date;
 import java.util.Optional;
 
+@Converter(autoApply = true)
 public class BirthdayConverter implements AttributeConverter<Birthday, Date> {
     @Override
     public Date convertToDatabaseColumn(Birthday attribute) {
@@ -18,7 +21,7 @@ public class BirthdayConverter implements AttributeConverter<Birthday, Date> {
     @Override
     public Birthday convertToEntityAttribute(Date dbData) {
         return Optional.ofNullable(dbData)
-                .map(D)
+                .map(Date::toLocalDate)
                 .map(Birthday::new)
                 .orElse(null);
     }

@@ -1,14 +1,17 @@
 package com.dmdev.entity;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
-import java.time.LocalDate;
-import java.util.Objects;
+import javax.persistence.*;
 
+@TypeDef(name = "dmdev", typeClass = JsonBinaryType.class) // теперь можно в типе над полем ставить наше сокращение
 @Data //генерирует геттеры, сеттеры, иквалс, хешкод, ту стринг
 @NoArgsConstructor // конструктор без параметров
 @AllArgsConstructor // со всеми параметрами
@@ -25,9 +28,13 @@ public class User {
     private String lastname;
     @Column(name = "birth_date") // второй вариант сопоставления полей сущности относительно таблицы
 //    private LocalDate birthDate;
+//    @Convert(converter = BirthdayConverter.class)
     private Birthday birthDate;
-    private Integer age;
-    @Enumerated(EnumType.STRING) // для использования нашего поля в Енаме в виде типа строка, по умолчанию ОРДИНАЛ - цифры
+//    private Integer age;
+
+    @Type(type = "dmdev") // вместо полного пути com.vladmihalcea.hibernate.type.json.JsonBinaryType указываем jsonb из метода getName класса JsonBinaryType
+    private String info;
+    @Enumerated(EnumType.STRING) // для использования нашего поля в Енаме в виде типа строка, по умолчанию ordinal - цифры
     private Role role;
 
     /** Это все ниже заменяет Lombok*/
@@ -106,4 +113,5 @@ public class User {
 //                ", age=" + age +
 //                '}';
 //    }
+
 }

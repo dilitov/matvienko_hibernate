@@ -10,13 +10,18 @@ repositories {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_18
-    targetCompatibility = JavaVersion.VERSION_18
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
-    implementation 'org.hibernate:hibernate-core:6.4.4.Final'
+    implementation 'org.hibernate:hibernate-core:5.5.6.Final'
+    // https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-52
+    implementation 'com.vladmihalcea:hibernate-types-52:2.12.1'
+
+
+
     implementation 'junit:junit:4.13.1'
     implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     implementation 'org.testng:testng:7.1.0'
@@ -32,6 +37,13 @@ dependencies {
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation 'org.slf4j:slf4j-api:2.0.7'
+
+
 }
 
 test {

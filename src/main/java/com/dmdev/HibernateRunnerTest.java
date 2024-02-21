@@ -1,10 +1,8 @@
 package com.dmdev;
 
 import com.dmdev.entity.User;
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
 import org.junit.jupiter.api.Test;
-
+import javax.persistence.*;
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,11 +18,11 @@ class HibernateRunnerTest {
     @Test
     void checkReflectionApi() throws SQLException, IllegalAccessException {
         User user = User.builder()
-                .username("ivan@gmail.com")
-                .firstname("Ivan")
-                .lastname("Ivanov")
-                .birthDate(LocalDate.of(2000, 1, 19))
-                .age(20)
+//                .username("ivan@gmail.com")
+//                .firstname("Ivan")
+//                .lastname("Ivanov")
+//                .birthDate(LocalDate.of(2000, 1, 19))
+//                .age(20)
                 .build();
 
         String sql = """
