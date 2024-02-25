@@ -2,6 +2,7 @@ package com.dmdev;
 
 import com.dmdev.converter.BirthdayConverter;
 import com.dmdev.entity.Birthday;
+import com.dmdev.entity.PersonalInfo;
 import com.dmdev.entity.Role;
 import com.dmdev.entity.User;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
@@ -39,9 +40,13 @@ public class HibernateRunner {
 
              User user = User.builder()
                      .username("ivan2@gmail.com")
-                     .firstname("Ivan")
-                     .lastname("Ivanov")
-                     .birthDate(new Birthday(LocalDate.of(2000, 1, 19)))
+                     .personalInfo(PersonalInfo.builder()
+                             .firstname("Petr")
+                             .lastname("Petrov")
+                             .build())
+//                     .firstname("Ivan")
+//                     .lastname("Ivanov")
+//                     .birthDate(new Birthday(LocalDate.of(2000, 1, 19)))
                      .info("""
                              {
                              "name": "Ivan",
@@ -58,7 +63,7 @@ public class HibernateRunner {
 //                 session.evict(user1); // удаляет сущность из кэша первого уровня persistenceContext нашу сущность
 //                 session.cancelQuery(); // отчистить весь кэш
 //                 session.close(); // закрытие сессии тоже чистит кэш
-                 user1.setFirstname("Petrov"); // изменение сущности, когда она находится в кэше - отобразится базе данных
+//                 user1.setFirstname("Petrov"); // изменение сущности, когда она находится в кэше - отобразится базе данных
                  session.flush(); // отправляет из кэша в базу данных нашу сущность
 
                  session.getTransaction().commit(); /** Закрываем транзакцию если все хорошо, .rollback() если плохо */

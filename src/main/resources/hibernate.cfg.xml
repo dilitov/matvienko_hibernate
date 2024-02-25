@@ -15,6 +15,9 @@
       <property name="format_sql">true</property>
 <!--      второй вариант добавления сущности в SessionFactory-->
       <mapping class="com.dmdev.entity.User"/>
+      <mapping class="com.dmdev.entity.Company"/>
+    <mapping class="com.dmdev.entity.Profile"/>
+    <mapping class="com.dmdev.entity.Chat"/>
 
 
     <!-- DB schema will be updated if needed -->
